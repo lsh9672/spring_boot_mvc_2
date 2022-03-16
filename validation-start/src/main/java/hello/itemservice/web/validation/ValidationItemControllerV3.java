@@ -49,7 +49,7 @@ public class ValidationItemControllerV3 {
     }
 
     //@Validated는 스프링에서 지원하는 기능, @Valid는 자바표준에서 지원하는 기능
-    //@PostMapping("/add")
+    @PostMapping("/add")
     public String addItem(@Validated @ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         //특정필드가 아닌 복합 룰 검증
@@ -72,7 +72,7 @@ public class ValidationItemControllerV3 {
         return "redirect:/validation/v3/items/{itemId}";
     }
 
-    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV2(@Validated(SaveCheck.class) @ModelAttribute Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         //특정필드가 아닌 복합 룰 검증

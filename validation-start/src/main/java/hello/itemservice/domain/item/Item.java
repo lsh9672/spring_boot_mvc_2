@@ -13,11 +13,11 @@ import javax.validation.constraints.NotNull;
 //@ScriptAssert(lang = "javascript", script = "_this.price * _this.quantity >= 10000", message = "총 합이 10000원 넘게 입력해주세요") => 기능이 너무 약해서 권장안함.
 public class Item {
 
-//    @NotNull // 수정요구사항
+    @NotNull // 수정요구사항
 //    @NotNull(groups = UpdateCheck.class)
     private Long id;
 
-//    @NotBlank(message = "공백X")
+    @NotBlank(message = "공백X")
 //    @NotBlank(groups = {SaveCheck.class,UpdateCheck.class})
     private String itemName;
 
@@ -26,6 +26,7 @@ public class Item {
 //    @Range(min = 1000, max = 1000000,groups = {SaveCheck.class,UpdateCheck.class})
     private Integer price;
 
+    @NotNull
 //    @NotNull(groups = {SaveCheck.class,UpdateCheck.class})
 //    @Max(value=9999, groups = SaveCheck.class) //수정 요구사항
     private Integer quantity;

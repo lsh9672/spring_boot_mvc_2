@@ -1,11 +1,17 @@
 package hello.exception.sevlet;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -31,6 +37,22 @@ public class ErrorPageController {
         log.info("errorPage 500");
         printErrorInfo(request);
         return "error-page/500";
+    }
+    //만약 */*로 되어있으면 우선순위가 html오류 페이지 호출이 우선순위를 가지게 됨. - 위에 있는 컨트롤러가 호출됨.
+    //클라이언트가 보내는 Accept가 application/json이면
+    @RequestMapping(value = "/error-page/500", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Map<String,Object>> errorPage500Api(HttpServletRequest request, HttpServletResponse response){
+        log.info("API errorPage 500");
+
+        //해시맵은 순서를 보장하지 않음
+        HashMap<String,Object> result = new HashMap<>();
+        Exception ex = (Exception) request.getAttribute(ERROR_EXCEPTION);
+        result.put("status", request.getAttribute(ERROR_STATUS_CODE));
+        result.put("message",ex.getMessage());
+
+        Integer statusCode =(Integer)request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+
+        return new ResponseEntity<>(result, HttpStatus.valueOf(statusCode));
     }
 
     private void printErrorInfo(HttpServletRequest request){
