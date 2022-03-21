@@ -120,7 +120,7 @@ public class LoginController {
         return "redirect:"+redirectURL;
     }
 
-    //PostMapping("/logout")
+    //@PostMapping("/logout")
     public String logout(HttpServletResponse response){
         expireCookie(response,"memberId");
 
