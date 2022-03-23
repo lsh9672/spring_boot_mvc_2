@@ -17,3 +17,5 @@
 ### 섹션 6. https://www.notion.so/MVC-2-6-fcf15d4ffb694d39b8e22d149a4f1586
 
 ### 섹션 7. https://www.notion.so/MVC-2-7-b0cfcc2d3feb498ea02cfc3072a822d6
+
+### 섹션 8. https://www.notion.so/MVC-2-8-365c3fae35c043e794afac0dac4e8033
