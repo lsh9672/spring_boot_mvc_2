@@ -15,7 +15,9 @@ import javax.servlet.http.Part;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Slf4j
 @RequestMapping("/servlet/v2")
@@ -39,7 +41,6 @@ public class ServletUploadControllerV2 {
 
         Collection<Part> parts = request.getParts();
         log.info("parts={}", parts);
-
         for (Part part : parts) {
             log.info("==== PART ====");
             log.info("name={}", part.getName());
